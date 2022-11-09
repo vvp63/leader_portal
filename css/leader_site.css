@@ -1,0 +1,55 @@
+        body {background-color: #FFFFFF; text-align: center; font-size: 14px; font-family: Helvetica, Geneva, Arial, sans-serif;}
+        a{text-decoration: none; color:#0F140E; font-size: 16px; font-family: Geneva, Arial, Helvetica, sans-serif;}
+        a:hover{text-decoration: none; color:#0F148E;}
+        a.top{font-size: 20px; font-weight: bold;}
+        a.l0{font-size: 20px;}
+        a.l1{font-size: 18px;}
+        a.l2{font-size: 17px;}
+        a.l3{font-size: 16px;}
+        table {padding: 0; margin: 0; border-width: 0; border-collapse: collapse;}
+        td {padding: 0; margin: 0; border-width: 0; text-align: center;}
+        td.top_menu {text-align: left; padding-left: 30;}
+        td.menu{text-align: left; padding-right: 100; padding-bottom: 10; padding-bottom: 10;}
+        td.des{text-align: right; font-size: 16px; color:#82A8D0; background-color: #0550A0; Gadugi, Calibri;}
+        td.main{text-align: left; vertical-align: top; font-size: 16px; background-color: #F4F9FF; padding: 30; padding-top: 15; line-height: 1.5;}
+        td.main_idx{text-align: left; vertical-align: top; font-size: 16px; padding: 90 60; border: 1px solid #82A8D0; border-top: 0;
+                    background-color: #0550A0; background-image: url(/img/ship.jpg); background-position: center; background-repeat: no-repeat;}
+        b.idx {color: #FFFFFF; font-family: Gadugi, Calibri; font-size: 96;}
+        h1 {font-size: 20px; font-weight: bold; color:#0550A0; font-family: Arial ,Helvetica, Geneva, sans-serif;}
+        h2 {font-size: 18px; font-weight: bold; color:#0550A0; font-family: Arial ,Helvetica, Geneva, sans-serif;}
+        b {font-size: 18px; font-weight: bold; color:#0F140E; font-family: Arial ,Helvetica, Geneva, sans-serif;}
+        td.person {padding: 10; background-color: #FFFFFF; text-align: center; vertical-align: top; border: 1px solid #82A8D0; border-bottom: 0; border-right: 0;}
+        img.photo{padding: 10px; background: #F4F9FF; border: 1px solid #82A8D0;}
+        td.pc {padding: 5; text-align: left; vertical-align: top; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        td.pc_sel {padding: 5; text-align: left; vertical-align: top; border: 1px solid #82A8D0;; background-color: #E6F0FE; border-top: 0; border-left: 0;}
+        input, select { height: 28px; background: #FFFFFF; padding-left: 10px; padding-right: 10px;
+                border: 2px solid #82A8D0; border-top: 1; border-right: 1;
+                font-family: Helvetica, Geneva, Arial, sans-serif; font-size: 18px; color:#0F140E; }
+        .cb {height: 16px; }
+        input.btn {color:#F4F9FF; background-color: #0550A0;}
+        input.fl {padding: 0; width: 500px;}
+        input.f2 {padding: 0; width: 300px;}
+        td.calend {padding: 3; color:#0F148E; font-size: 15; background-color: #E6F0FE; text-align: center; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        td.ce {padding: 3; background-color: #FFFFFF; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 14;}
+        td.meet{padding: 3; text-align: center; font-size: 13px; color:#0F140E; background-color: #96B8D9; line-height: 1;}
+        a.meet{font-size: 13px; color:#0F148E;}
+        b.err{font-size: 16px; color: #F05079;}
+        a.mr {font-size: 17px; font-weight: bold;}
+        td.form {padding: 15; background-color: #E6F0FE; text-align: left; border: 2px solid #82A8D0; border-top: 1; border-left: 1;}
+        
+        table.v3 {border-spacing: 1; border: 1px #000000; background-color: #FFFFFF;}
+        td.vtu {padding: 2; width: 23px; height: 25px; color:#0F148E; font-size: 13; background-color: #E6F0FE;
+                text-align: center; border: 1px solid #82A8D0; border-top: 0; border-left: 0; white-space: nowrap;}
+        td.vts {padding: 2; width: 23px; color:#0F148E; font-size: 13; background-color: #CCD0E0;
+                 text-align: center; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        td.vfio{padding: 2; color:#0F148E; background-color: #F0F7FE; text-align: left; 
+                border: 1px solid #82A8D0; border-top: 0; border-left: 0; white-space: nowrap;}
+        td.vu {background-color: #FFFFFF; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        td.vs {background-color: #D6E0E9; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        td.vv {background-color: #80E09F; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 13; cursor: default;}
+        td.va {background-color: #809FF7; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 13; cursor: default;}
+        td.vk {background-color: #F7809F; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 13; cursor: default;}
+        td.vb {background-color: #C9C959; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 13; cursor: default;}
+        td.vt {background-color: #FDFDD9; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+        
+        input.btn_adm {font-size: 13px; color:#F4F9FF; background-color: #0550A0;}
