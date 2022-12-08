@@ -18,7 +18,7 @@
 <input type="submit" name="find_btn" value="Найти" class=btn></form>
 
 {foreach from=$docs_show key=k item=v}
-    <b>{$v.date}</b> <i>{$v.comment}</i><br>
+    <b>{$v.date|truncate:11:"":false}</b> <i>{$v.comment}</i><br>
     <img src=./img/file.png>&nbsp;<a target=_blank href='{$docs_path}/{$v.filename}'>{$v.filename}</a><br>
     {if $is_adm_2}
         <form method=post action="{$smarty.server.REQUEST_URI}" onsubmit="return confirm('Удалить документ {$v.filename}?');"> 

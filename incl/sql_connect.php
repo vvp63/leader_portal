@@ -11,6 +11,7 @@ try {
 }
 
 $initial_id = "56990d26-88df-11e8-838f-9c5c8ecdeaed";
+$general_id = "07efa051-8da5-11df-937e-0025b3d175fe";
 $struct = array();
 $struct[$initial_id]["NAME"] = 'ЗАО "Лидер"';
 $struct[$initial_id]["PARENT"] = "-"; 
@@ -73,6 +74,10 @@ foreach ($dbh_my->query("select id, hide, use_alt from hide_person") as $row) $h
 
 foreach ($people as $i=>$k) $people[$i]["is_hp"] = is_hp($i);
 
+$people_new = array();
+foreach ($people as $i=>$k) if ($i == $general_id) $people_new[$i] = $k;
+foreach ($people as $i=>$k) if ($i != $general_id) $people_new[$i] = $k;
+$people = $people_new;
 
 
 ?>

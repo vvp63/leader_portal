@@ -43,7 +43,7 @@
             
     </td>
     <td align=center width=226>
-    {if $is_admin || $smarty.session.hide_adm == 1}
+    {if $smarty.session.admin.level > 0}         {*$is_admin || $smarty.session.hide_adm == 1*}  
         {if $smarty.session.hide_adm != 1}
             Режим администратора<br>{$smarty.session.admin.login}<br>         
         {/if}

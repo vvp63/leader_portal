@@ -1,8 +1,14 @@
 {include file="header.tpl"}
 
 <h1>Сотрудники</h1>
+
+
 <form action={$links.persons} method="POST"><input type="search" size=40 name="ft" placeholder="Поиск по сотрудникам" value="{$smarty.session.find_pers}">
-&nbsp;<input type="submit" name="find_btn" value="Найти" class=btn></form><br>
+&nbsp;<input type="submit" name="find_btn" value="Найти" class=btn>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a class=l1 href={$links.birth}?id={$k}>Дни рождения &gt;&gt;</a>
+</form>
+
 
 
 {include file="pers_table.tpl"}

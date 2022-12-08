@@ -9,9 +9,12 @@ const PH_ALT_PATH = "./photo_alt/";
 const IMG_S_SIZE = 150;
 const IMG_B_SIZE = 450;
 
+$monthes = array("01"=>"Января", "02"=>"Февраля", "03"=>"Марта", "04"=>"Апреля", "05"=>"Мая", "06"=>"Июня",
+                 "07"=>"Июля", "08"=>"Августа", "09"=>"Сентября", "10"=>"Октября", "11"=>"Ноября", "12"=>"Декабря");
+
 // Уровни админа. 1 - бронирование переговорных, 2 - загрузка документов, 4 - структура компании и карточки сотрудников, 8 - карточки пользователей
 unset($_SESSION["admin"]);
-foreach($dbh_my->query("select * from admins where login = '".$_SERVER['LOGON_USER']."'") as $row) $_SESSION["admin"] = $row;
+foreach($dbh_my->query("select * from admins where level > 0 and login = '".$_SERVER['LOGON_USER']."'") as $row) $_SESSION["admin"] = $row;
 
 if (isset($_POST["ch_adm"])) {
     if (isset($_SESSION["hide_adm"])) {
@@ -63,7 +66,8 @@ $links = array( "struct"=>"/structure.php",
                 "vac" => "/vacations.php",
                 "meet" => "/meeting.php",
                 "pers" => "/person.php",
-                "idx" => "/index.php"
+                "idx" => "/index.php",
+                "birth" => "/birthdays.php"
             );
 
 $menu = array(  $links["struct"]=>"Структура компании", 
@@ -79,7 +83,7 @@ $month_rus = array("Январь", "Февраль", "Март", "Апрель",
 $smarty->assign("links", $links);
 $smarty->assign("menu", $menu);
 $smarty->assign("class_idx", ($_SERVER['SCRIPT_NAME'] == $links["idx"]) ? "_idx" : "");
-$smarty->assign("is_admin", is_admin(127));
+$smarty->assign("is_admin", is_admin(255));
 
 
 ?>

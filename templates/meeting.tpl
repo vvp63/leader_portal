@@ -5,7 +5,9 @@
 {if isset($smarty.session.roomid)}
 
     <h2>Переговорная {$curr_room.name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href={$links.meet}?roomid=0> К списку переговорных &gt;&gt;</a></h2>
-    {if $add_txt != ""}{$add_txt}<br />{/if}
+    
+    {if $add_text != ""}{$add_text}<br />{/if}
+
     {if $is_adm_1}
         <table><tr><td class=form><form action='{$links.meet}?ts={$ts}' method=POST>
         <input type=date name=calend_dt value='{$ts|date_format:"%Y"}-{$ts|date_format:"%m"}-{$ts|date_format:"%d"}'>&nbsp;&nbsp;&nbsp;
@@ -14,6 +16,8 @@
         </select>&nbsp;-&nbsp;<select name=te>
         {foreach from=$ints key=k item=v}<option value='{($today + $v + $ti)|date_format:"%H:%M"}'>{($today + $v + $ti)|date_format:"%H:%M"}</option>{/foreach}
         </select><br><br>
+        <input type=checkbox class=cb name=everyday value=1>&nbsp;Ежедневно до&nbsp;
+        <input type=date name=date_till value='{$ts|date_format:"%Y"}-{$ts|date_format:"%m"}-{$ts|date_format:"%d"}'><br /><br />
         <select class='js-select2' name='person' placeholder='ФИО'><option value=''></option>
         {foreach from=$people key=k item=v}
             {if !$v.is_hp}

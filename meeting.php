@@ -72,34 +72,43 @@ function in_meeting($int_ts) {
     return $res;
 }
 
+
 $add_text = "";
 if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
-    $nm_tb = strtotime($_POST['calend_dt']) + strtotime($_POST['tb']) - $today;
-    $nm_te = strtotime($_POST['calend_dt']) + strtotime($_POST['te']) - $today;
-    $int_text = date('d.m.Y H:i', $nm_tb)." - ".date('d.m.Y H:i', $nm_te);
-    if ($nm_tb >= $nm_te) 
-        $add_text .= "<b class=err>Границы интервала вне допустимых значений (".$int_text.")</b><br>\n";
-    else {
-        $im_b = in_meeting($nm_tb); $im_e = in_meeting($nm_te);
-        if (($im_b['num'] != 0) || ($im_e['num'] != 0)) 
-            $add_text .= "<b class=err>Интервал ".$int_text." уже занят</b><br>\n";
+    
+    $meetdt = strtotime($_POST['calend_dt']); $datetill = strtotime($_POST['date_till']); $everyday = $_POST['everyday'];
+    $br_flag = true;
+    
+    while ($br_flag) {
+        
+        $nm_tb = $meetdt + strtotime($_POST['tb']) - $today;
+        $nm_te = $meetdt + strtotime($_POST['te']) - $today;
+        $int_text = date('d.m.Y H:i', $nm_tb)." - ".date('d.m.Y H:i', $nm_te);
+        if ($nm_tb >= $nm_te) 
+            $add_text .= "<b class=err>Границы интервала вне допустимых значений (".$int_text.")</b><br>\n";
         else {
-            if (strlen($_POST['person']) < 2)
-                $add_text .= "<b class=err>Не задан пользователь, осуществляющий бронирование</b><br>\n";
+            $im_b = in_meeting($nm_tb); $im_e = in_meeting($nm_te);
+            if (($im_b['num'] != 0) || ($im_e['num'] != 0)) 
+                $add_text .= "<b class=err>Интервал ".$int_text." уже занят</b><br>\n";
             else {
-                $int_num = ($curr_room["time_incr"] > 0 ? ($nm_te - $nm_tb) / $curr_room["time_incr"] : 0);
-                $query = "INSERT INTO meetings(room_id, time_begin, intervals_num, person, comment) VALUES
-                    (".$_SESSION["roomid"].", ".$nm_tb.", ".$int_num.", '".$_POST['person']."', '".$_POST['comment']."')"; 
-                $dbh_my->query($query);          
-                $add_text .= "Интервал ".$int_text." добавлен<br>\n"; 
-                foreach($dbh_my->query("select * from meetings where room_id = ".$_SESSION["roomid"]." and time_begin >= ".$w_s." and time_begin < ".$w_e) as $row) 
-                    $meetings[$row["id"]] = $row;  
-                                     
+                if (strlen($_POST['person']) < 2)
+                    $add_text .= "<b class=err>Не задан пользователь, осуществляющий бронирование</b><br>\n";
+                else {
+                    $int_num = ($curr_room["time_incr"] > 0 ? ($nm_te - $nm_tb) / $curr_room["time_incr"] : 0);
+                    $query = "INSERT INTO meetings(room_id, time_begin, intervals_num, person, comment) VALUES
+                        (".$_SESSION["roomid"].", ".$nm_tb.", ".$int_num.", '".$_POST['person']."', '".$_POST['comment']."')"; 
+                    $dbh_my->query($query);          
+                    $add_text .= "Интервал ".$int_text." добавлен<br>\n"; 
+                    foreach($dbh_my->query("select * from meetings where room_id = ".$_SESSION["roomid"]." and time_begin >= ".$w_s." and time_begin < ".$w_e) as $row) 
+                        $meetings[$row["id"]] = $row;                                           
+                }             
             }             
-        }             
-    }     
+        }        
+        
+        $meetdt += 86400;
+        if (($everyday != 1) || ($meetdt > $datetill)) $br_flag = false;
+    }      
 }
-
 
 $in_meet = array();
 foreach ($ints as $k=>$v) {
@@ -109,9 +118,8 @@ foreach ($ints as $k=>$v) {
     } 
 }
 
-
 $smarty->assign("curr_room", $curr_room);
-$smarty->assign("add_txt", $add_txt);
+$smarty->assign("add_text", $add_text);
 $smarty->assign("ti", $rooms[$_SESSION["roomid"]]["time_incr"]);
 $smarty->assign("is_adm_1", is_admin(1));
 $smarty->assign("ts", $ts);
@@ -131,9 +139,7 @@ $smarty->assign("nextmonth_rus", $month_rus[date('n', $nextmonth)-1]);
 $smarty->assign("today", $today);
 $smarty->assign("meetings", $meetings);
 
-
 $smarty->display("meeting.tpl");
-
 
 
 ?>
