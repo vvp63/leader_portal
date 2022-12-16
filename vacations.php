@@ -52,6 +52,19 @@ while ($d < $nextmonth) {
     $d += 86400;
 }
 
+// Проверяем на предмет пересечений интервалов
+
+foreach ($vacantions as $k=>$v) {
+    $last_end = null; $last_end_ts = null;
+    foreach ($v["intervals"] as $j=>$ci) {
+        if ($ci["beg_ts"] < $last_end_ts) {
+            $vacantions[$k]["intervals"][$j]["beg"] = $last_end; $vacantions[$k]["intervals"][$j]["beg_ts"] = $last_end_ts;   
+        }          
+        $last_end = $ci["end"]; $last_end_ts = $ci["end_ts"];
+    }    
+}
+
+// Расписываем месяц по дням
 foreach ($vacantions as $k=>$v) {
     $vacantions[$k]["hide"] = is_hp($k);
     if (!is_hp($k)) {
@@ -73,6 +86,7 @@ foreach ($vacantions as $k=>$v) {
         }
     }
 }
+
 
 $smarty->assign("prevmonth", $prevmonth);
 $smarty->assign("lastmonth", $lastmonth);
