@@ -31,10 +31,16 @@
         input.f2 {padding: 0; width: 300px;}
         td.calend {padding: 3; color:#0F148E; font-size: 15; background-color: #E6F0FE; text-align: center; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
         td.ce {padding: 3; background-color: #FFFFFF; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 14;}
-        td.meet{padding: 3; text-align: center; font-size: 13px; color:#0F140E; background-color: #96B8D9; line-height: 1;}
+        td.meet{padding: 3; text-align: center; font-size: 13px; color:#0F140E; background-color: #96B8D9; line-height: 1; border: 1px solid #5A98B7;}
         a.meet{font-size: 13px; color:#0F148E;}
         b.err{font-size: 16px; color: #F05079;}
         a.mr {font-size: 17px; font-weight: bold;}
+		
+	span.mr100 {background-color: #F0CE88; padding: 4; margin: 2;}
+	span.mr101 {background-color: #88CEF0; padding: 4; margin: 2;}
+	span.mr102 {background-color: #B3F688; padding: 4; margin: 2;}
+	span.mr103 {background-color: #F0B3C8; padding: 4; margin: 2;}
+		
         td.form {padding: 15; background-color: #E6F0FE; text-align: left; border: 2px solid #82A8D0; border-top: 1; border-left: 1;}
         
         table.v3 {border-spacing: 1; border: 1px #000000; background-color: #FFFFFF;}

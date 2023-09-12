@@ -76,7 +76,7 @@
     <table><tr>
     <td class=pc>&nbsp;</td><td class=pc>Этаж</td><td class=pc>Количество мест</td><td class=pc>Начало</td><td class=pc>Конец</td><td class=pc>Интервал</td></tr>
     {foreach from=$rooms key=k item=v}
-        <tr><td class=pc><a class=mr href={$links.meet}?roomid={$k}>{$v.name}</a></td><td class=pc>{$v.level}</td>
+        <tr><td class=pc><span class=mr{$k}><a class=mr href={$links.meet}?roomid={$k}>{$v.name}</a></span></td><td class=pc>{$v.level}</td>
         <td class=pc>{$v.places}</td><td class=pc>{($today + $v.beg_time)|date_format:"%H:%M"}</td><td class=pc>
         {($today + $v.end_time)|date_format:"%H:%M"}</td><td class=pc>{($today + $v.time_incr)|date_format:"%H:%M"}</td></tr>
     {/foreach}
@@ -99,7 +99,7 @@
                 {assign var=name_s value=mb_substr($people.$pers_id.NAME, 0, 1)}
                 {assign var=sname_s value=mb_substr($people.$pers_id.SNAME, 0, 1)}
                 {assign var=roomid value=$v.room_id}
-                <a href={$links.meet}?roomid={$roomid}&ts={$v.time_begin}>{$rooms.$roomid.name}</a>&nbsp;
+                <span class=mr{$roomid}><a href={$links.meet}?roomid={$roomid}&ts={$v.time_begin}>{$rooms.$roomid.name}</a></span>&nbsp;
                 {$v.time_begin|date_format:"%H:%M"} - {($v.time_begin + $v.intervals_num * $rooms.$roomid.time_incr)|date_format:"%H:%M"}&nbsp;
                 {$v.comment}&nbsp;
                 {if isset($people.$pers_id) && !($people.$pers_id.is_hp)} 

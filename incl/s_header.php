@@ -73,7 +73,7 @@ $links = array( "struct"=>"/structure.php",
 $menu = array(  $links["struct"]=>"Структура компании", 
                 $links["persons"]=>"Сотрудники",
                 $links["docs"]=>"Распорядительные документы",
-                $links["blanks"]=>"Бланки документов", 
+                $links["blanks"]=>"Бланки и документы", 
                 $links["vac"]=>"График отсутствий",
                 $links["meet"]=>"Бронирование переговорных"
             );

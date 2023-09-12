@@ -87,7 +87,7 @@ if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
         if ($nm_tb >= $nm_te) 
             $add_text .= "<b class=err>Границы интервала вне допустимых значений (".$int_text.")</b><br>\n";
         else {
-            $im_b = in_meeting($nm_tb); $im_e = in_meeting($nm_te);
+            $im_b = in_meeting($nm_tb); $im_e = in_meeting($nm_te - 1);
             if (($im_b['num'] != 0) || ($im_e['num'] != 0)) 
                 $add_text .= "<b class=err>Интервал ".$int_text." уже занят</b><br>\n";
             else {
@@ -99,6 +99,16 @@ if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
                         (".$_SESSION["roomid"].", ".$nm_tb.", ".$int_num.", '".$_POST['person']."', '".$_POST['comment']."')"; 
                     $dbh_my->query($query);          
                     $add_text .= "Интервал ".$int_text." добавлен<br>\n"; 
+                    
+                    //  Mailer
+                    $to      = 'V.Poliektov@leader-invest.ru';
+                    $subject = 'Бронирование переговорных';
+                    $message = $add_text;
+                    $headers = 'From: portal@leader-invest.ru';
+                    mail($to, $subject, $message, $headers);
+                    //  Mailer end
+                    
+                    
                     foreach($dbh_my->query("select * from meetings where room_id = ".$_SESSION["roomid"]." and time_begin >= ".$w_s." and time_begin < ".$w_e) as $row) 
                         $meetings[$row["id"]] = $row;                                           
                 }             

@@ -14,7 +14,7 @@
     <input type="submit" value="Отправить" class=btn /></form></td></tr></table><br>
 {/if}
 
-<form action="{$links.docs}" method="POST"><input size=40 type="search" name="ft" placeholder="Поиск по документам" value='{$smarty.session.find_doc}'>
+<form action="{$links.docs}" method="POST"><input size=40 type="search" name="ft" placeholder="Поиск" value='{$smarty.session.find_doc}'>
 <input type="submit" name="find_btn" value="Найти" class=btn></form>
 
 {foreach from=$docs_show key=k item=v}
