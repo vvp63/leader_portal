@@ -101,11 +101,11 @@ if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
                     $add_text .= "Интервал ".$int_text." добавлен<br>\n"; 
                     
                     //  Mailer
-                    $to      = 'V.Poliektov@leader-invest.ru';
-                    $subject = 'Бронирование переговорных';
-                    $message = $add_text;
-                    $headers = 'From: portal@leader-invest.ru';
-                    mail($to, $subject, $message, $headers);
+                    //	$to      = 'V.Poliektov@leader-invest.ru';
+                    //	$subject = 'Бронирование переговорных';
+                    //	$message = $add_text;
+                    //	$headers = 'From: portal@leader-invest.ru';
+                    //	mail($to, $subject, $message, $headers);
                     //  Mailer end
                     
                     
