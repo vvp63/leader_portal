@@ -27,7 +27,7 @@
         <input type=checkbox class=cb name=alt_photo value=1 {if $is_alt} checked{/if}>&nbsp;Использовать в карточке альтернативное фото<br>
         
         {if $is_alt}
-            (Здесь показано фото из 1С)<br><img class=photo width={$w} height={$h} src={$im_fn}><br>
+            (Ниже показано фото из 1С)<br><img class=photo width={$w} height={$h} src={$im_fn}><br>
         {else}
             <img class=photo width={$w_alt} height={$h_alt} src={$im_fn_alt}><br>
         {/if}

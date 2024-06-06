@@ -5,7 +5,7 @@
 <tr>
 
     <td align=center width=60></td>
-    <td align=center width=226 class="pc">&copy; 2001-2022<br>ЗАО &laquo;ЛИДЕР&raquo;</td>
+    <td align=center width=226 class="pc">&copy; 2001-2024<br>ЗАО &laquo;ЛИДЕР&raquo;</td>
     <td class=des>Designed in IT Department&nbsp;&nbsp;</td>
     <td align=center width=226></td>    
     <td align=center width=60></td>

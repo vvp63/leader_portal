@@ -12,6 +12,8 @@ try {
 
 $initial_id = "56990d26-88df-11e8-838f-9c5c8ecdeaed";
 $general_id = "07efa051-8da5-11df-937e-0025b3d175fe";
+$organization_id = "56990D26-88DF-11E8-838F-9C5C8ECDEAED";
+
 $struct = array();
 $struct[$initial_id]["NAME"] = 'ЗАО "Лидер"';
 $struct[$initial_id]["PARENT"] = "-"; 
@@ -25,9 +27,12 @@ $parent_query = "SELECT t.[Ссылка] AS id, t.[Наименование] AS 
                       ,[ПометкаУдаления]
                   FROM [IO_INF].[dbo].[Обмен1С_ПодразделенияОрганизаций]
                   WHERE [ПометкаУдаления] = 0
+						AND [ГоловнаяОрганизацияСсылка] = '".$organization_id."'
                   ) AS t
                   WHERE t.Num = 1
                   ORDER BY t.[Наименование]";  
+				  
+				  // 
                   
 foreach ($dbh->query($parent_query) as $row) {
     $id = mb_strtolower($row["id"]);
@@ -42,6 +47,7 @@ foreach ($struct as $i=>$k) $struct[$i]["is_hs"] = is_hs($i);
 
 $people = array();
 
+/*
 $persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], v1.[ФизическоеЛицоФамилия] AS [FAMILY]
                   ,v1.[ФизическоеЛицоОтчество] AS [SNAME], v1.[ФизическоеЛицоИмя] AS [NAME]
                   ,v1.[ФизическоеЛицоДатаРождения] AS [BIRTHDAY], v1.[ПодразделениеСсылка] AS [STRUCTURE]
@@ -60,6 +66,29 @@ $persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], 
                       ON (v1.[ДолжностьСсылка] = t1.[id])
                       WHERE v1.[ДатаУвольнения] IS NULL
                       ORDER BY v1.[ФизическоеЛицоФамилия], v1.[ФизическоеЛицоИмя]";
+*/
+
+					  
+$persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], v1.[Фамилия] AS [FAMILY]
+                  ,v1.[Отчество] AS [SNAME], v1.[Имя] AS [NAME]
+                  ,v1.[ДатаРождения] AS [BIRTHDAY], v1.[ПодразделениеСсылка] AS [STRUCTURE]
+                  ,t1.pos_name AS [POSITION], v1.[ТелефонРабочий] AS [WorkPhone]
+                  ,v1.[EMailФизическиеЛица] AS [WorkEmail], v1.[Кабинет] AS [WorkCabinet]
+                  ,v1.[ДатаПриема] AS [HireDate], v1.[ДатаУвольнения] AS [FireDate]
+                    FROM [IO_INF].[dbo].[View_Обмен1С_АктуальныеСотрудники] AS v1 LEFT JOIN 
+                     (
+                    	SELECT t.* FROM
+                    		(SELECT ROW_NUMBER() OVER (PARTITION BY [Ссылка] ORDER BY [ОбменДатаВремя] desc) AS rn
+                    			  ,[Ссылка] AS id
+                    			  ,[Наименование] AS pos_name
+                    		FROM [IO_INF].[dbo].[Обмен1С_Должности]) AS t
+                    	WHERE t.rn = 1 
+                     ) AS t1
+                      ON (v1.[ДолжностьСсылка] = t1.[id])
+                      WHERE v1.[ДатаУвольнения] IS NULL
+						AND [ГоловнаяОрганизацияСсылка] = '".$organization_id."'
+                      ORDER BY v1.[Фамилия], v1.[Имя]";
+				  
                       
 foreach ($dbh->query($persons_query) as $row) {
     $id = mb_strtolower($row["id"]);
