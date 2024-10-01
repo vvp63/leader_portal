@@ -9,7 +9,11 @@ const PAGES_AROUND = 3;
 $curr_page = 1;
 if (!is_null($_REQUEST['page'])) $curr_page = $_REQUEST['page'];
 
-if (strlen($_POST['find_btn']) >= 2) $_SESSION['find_pers'] = $_POST['ft'];
+if (strlen($_POST['find_btn']) >= 2) {
+	$_SESSION['find_pers'] = $_POST['ft'];
+} else {
+	if (is_null($_REQUEST['page'])) $_SESSION['find_pers'] = "";
+}
 
 $pers_show = array();
 $i = 0;

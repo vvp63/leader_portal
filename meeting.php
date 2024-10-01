@@ -9,6 +9,7 @@ $lastmonth = mktime(0, 0, 0, date("m", $ts), 1, date("Y", $ts));
 $nextmonth = mktime(0, 0, 0, date("m", $ts) + 1, 1, date("Y", $ts));
 $prevmonth = mktime(0, 0, 0, date("m", $ts) - 1, 1, date("Y", $ts));
 $today = mktime(0, 0, 0, date("m", $ts), date("d", $ts), date("Y", $ts));
+$today2 = mktime(0, 0, 0, date("m", time()), date("d", time()), date("Y", time()));
 $w_s = (date('w', $ts) == 1) ? $today : strtotime('last monday', $ts);
 $w_e = $w_s + 7 * 86400;
 
@@ -75,14 +76,16 @@ function in_meeting($int_ts) {
 
 $add_text = "";
 if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
+	
+	
     
     $meetdt = strtotime($_POST['calend_dt']); $datetill = strtotime($_POST['date_till']); $everyday = $_POST['everyday'];
     $br_flag = true;
     
     while ($br_flag) {
         
-        $nm_tb = $meetdt + strtotime($_POST['tb']) - $today;
-        $nm_te = $meetdt + strtotime($_POST['te']) - $today;
+        $nm_tb = $meetdt + strtotime($_POST['tb']) - $today2;
+        $nm_te = $meetdt + strtotime($_POST['te']) - $today2;
         $int_text = date('d.m.Y H:i', $nm_tb)." - ".date('d.m.Y H:i', $nm_te);
         if ($nm_tb >= $nm_te) 
             $add_text .= "<b class=err>Границы интервала вне допустимых значений (".$int_text.")</b><br>\n";

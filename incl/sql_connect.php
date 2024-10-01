@@ -47,33 +47,14 @@ foreach ($struct as $i=>$k) $struct[$i]["is_hs"] = is_hs($i);
 
 $people = array();
 
-/*
-$persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], v1.[ФизическоеЛицоФамилия] AS [FAMILY]
-                  ,v1.[ФизическоеЛицоОтчество] AS [SNAME], v1.[ФизическоеЛицоИмя] AS [NAME]
-                  ,v1.[ФизическоеЛицоДатаРождения] AS [BIRTHDAY], v1.[ПодразделениеСсылка] AS [STRUCTURE]
-                  ,t1.pos_name AS [POSITION], v1.[ТелефонРабочий] AS [WorkPhone]
-                  ,v1.[EMailФизическиеЛица] AS [WorkEmail], v1.[Кабинет] AS [WorkCabinet]
-                  ,v1.[ДатаПриема] AS [HireDate], v1.[ДатаУвольнения] AS [FireDate]
-                    FROM [IO_INF].[dbo].[View_Обмен1С_АктуальныеСотрудники] AS v1 LEFT JOIN 
-                     (
-                    	SELECT t.* FROM
-                    		(SELECT ROW_NUMBER() OVER (PARTITION BY [Ссылка] ORDER BY [ОбменДатаВремя] desc) AS rn
-                    			  ,[Ссылка] AS id
-                    			  ,[Наименование] AS pos_name
-                    		FROM [IO_INF].[dbo].[Обмен1С_Должности]) AS t
-                    	WHERE t.rn = 1 
-                     ) AS t1
-                      ON (v1.[ДолжностьСсылка] = t1.[id])
-                      WHERE v1.[ДатаУвольнения] IS NULL
-                      ORDER BY v1.[ФизическоеЛицоФамилия], v1.[ФизическоеЛицоИмя]";
-*/
+
 
 					  
 $persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], v1.[Фамилия] AS [FAMILY]
                   ,v1.[Отчество] AS [SNAME], v1.[Имя] AS [NAME]
                   ,v1.[ДатаРождения] AS [BIRTHDAY], v1.[ПодразделениеСсылка] AS [STRUCTURE]
                   ,t1.pos_name AS [POSITION], v1.[ТелефонРабочий] AS [WorkPhone]
-                  ,v1.[EMailФизическиеЛица] AS [WorkEmail], v1.[Кабинет] AS [WorkCabinet]
+                  ,v1.[ПочтаРабочая] AS [WorkEmail], v1.[Кабинет] AS [WorkCabinet]
                   ,v1.[ДатаПриема] AS [HireDate], v1.[ДатаУвольнения] AS [FireDate]
                     FROM [IO_INF].[dbo].[View_Обмен1С_АктуальныеСотрудники] AS v1 LEFT JOIN 
                      (
