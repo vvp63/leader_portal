@@ -1,0 +1,9 @@
+table.main {border: 2px solid #E0E0FF; margin: 1 px; padding: 1px; background-color: #F0F0FF; font-size: 18px;}
+td.client {padding-left: 20px; width: 100%; font-size: 20px;}
+td.rlform {width: 500px; height: 200px; vertical-align: top; padding: 5px; margin: 0px;  font-size: 18px; border: 1px solid #E0E0FF;}
+td.rltop {vertical-align: top; padding: 7px; font-size: 18px; background-color: #F0FFF0; border: 1px solid #E0FFE0;}
+.srch {width: 450px; font-size: 17px;}
+select {margin: 2; font-size: 16px;}
+.slct {width: 500px; margin: 2; font-size: 16px;}
+.vis {display: inline;}
+.unvis {display: none;}
