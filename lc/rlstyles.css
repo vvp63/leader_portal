@@ -1,9 +1,11 @@
-table.main {border: 2px solid #E0E0FF; margin: 1 px; padding: 1px; background-color: #F0F0FF; font-size: 18px;}
+
+table.main {border: 2px solid #E8E8FF; margin: 1 px; padding: 1px; background-color: #F9F9FF; font-size: 16px;}
 td.client {padding-left: 20px; width: 100%; font-size: 20px;}
-td.rlform {width: 500px; height: 200px; vertical-align: top; padding: 5px; margin: 0px;  font-size: 18px; border: 1px solid #E0E0FF;}
-td.rltop {vertical-align: top; padding: 7px; font-size: 18px; background-color: #F0FFF0; border: 1px solid #E0FFE0;}
-.srch {width: 450px; font-size: 17px;}
-select {margin: 2; font-size: 16px;}
-.slct {width: 500px; margin: 2; font-size: 16px;}
+td.rlform {width: 500px; height: 250px; vertical-align: top; padding: 5px; margin: 0px;  font-size: 16px; border: 1px solid #E8E8FF;}
+td.rltop {vertical-align: top; padding: 7px; font-size: 18px; background-color: #E8E8FF; border: 1px solid #E0E0FF;}
+.srch {width: 450px; font-size: 16px;}
+select {margin: 2px; font-size: 16px;}
+select.slct {width: 500px; font-size: 16px;}
+.butt {font-size: 18px; padding: 5px; background-color: #E0E0FF; border: 1px solid #C0C0F0; font-color: #101030}
 .vis {display: inline;}
 .unvis {display: none;}
