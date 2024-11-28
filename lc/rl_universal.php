@@ -59,16 +59,28 @@ if ($_POST["fl"] == "add") {
 			(($_POST["rtype"] != 'I') && ($cbt == "")) || !isset($_POST["minval"]) || !isset($_POST["minval"])) {
 				$message .= "Не заданы все обязательные параметры (эмитент или группа, список типов бумаг или выпуск, размер ограничений)";
 			} else {			
-				$query = "EXEC [dbo].[RL_U_AddUpdate] @ClientId = ".$_SESSION["client"].", @CORG = '".$_POST["CORG"]. "', @CORGid = '".$_POST["corg_list"]."'".
+				$query = "EXEC [RL_U_AddUpdate] @ClientId = ".$_SESSION["client"].", @CORG = '".$_POST["CORG"]. "', @CORGid = '".$_POST["corg_list"]."'".
 						", @RestrictType = '".$_POST["rtype"]."', @IssueRid = ".($_POST["rtype"] == 'I' ? "'".$_POST["issues_list"]."'" : 'NULL').
 						", @TypesList = ".($_POST["rtype"] == 'I' ? "NULL" : "'".$cbt."'").", @LimitType = '".$_POST["ltype"]."'".
-						", @Min = ".$_POST["minval"].", @Max = ".$_POST["maxval"].(isset($_POST["ed_rid"]) ? ", @Ridtodel = '".$_POST["ed_rid"]."'" : "");
+						", @Min = ".$_POST["minval"].", @Max = ".$_POST["maxval"].
+						( (isset($_POST["ed_rid"]) && ($_POST["ed_rid"] != "")) ? ", @Ridtodel = '".$_POST["ed_rid"]."'" : "");
 				$dbh->query($query);
 				$message .= "Ограничение сохранено";					
 			}
 	} else {
 		$message = "Клиент не выбран.";
 	}
+}
+
+//	Массовое копирование
+if ($_POST["fl"] == "copyall") {
+	$aa["fl"] = 1;
+	$aa["cb"] = $_POST["cb"];
+	foreach ($aa["cb"] as $k => $v) {
+		$query = "EXEC [RL_U_CopyToClient] @Rid = '".$_POST["rid"][$k]."', @ClientTo = ".$_POST["copytocl"];
+		$dbh->query($query);
+	}
+	$message .= "Ограничения скопированы(".count($aa["cb"]).")";
 }
 
 //	Получаем названия для контрагентов или групп и выпусков
@@ -78,8 +90,7 @@ if ($aa["fl"] == 1) {
 	} else {  
 		$query = "SELECT [rid], [name] FROM [dbo].[_CL_Contragents] WHERE [rid] = '".$aa["cgrid"]."'";
 	}
-	foreach($dbh->query($query) as $row) $aa["cgname"] = $row["name"];	
-	
+	foreach($dbh->query($query) as $row) $aa["cgname"] = $row["name"];		
 	if ($aa["rtype"] == 'I') {
 		$query = "SELECT [rid], [FullName] FROM [dbo].[_CL_URL_issues] WHERE [emitents_id]='".$aa["cgrid"]."' ORDER BY [FullName]";
 		foreach($dbh->query($query) as $row) $aa["issues"][$row["rid"]] = $row["FullName"];		
