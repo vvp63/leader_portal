@@ -2,7 +2,7 @@
 
 error_reporting(E_ALL);
 
-const PHOTO_PATH = "./photo_1c/";
+const PHOTO_PATH = "./photo_1c_new/";
 
 include("incl/s_header.php");
 
@@ -11,7 +11,9 @@ $not_empty = true;
 const PP_QUERY = 20;
 $currid = 0;
 
+
 if (is_admin(64)) {
+	
     
     while ($not_empty) {
         

@@ -11,6 +11,8 @@ $today = mktime(0, 0, 0, date("m", $ts), date("d", $ts), date("Y", $ts));
 $curr_pid = $_REQUEST["id"];
 $pers = $people[$curr_pid];
 
+
+
 if ( (is_admin(8)) && (strlen($_REQUEST["save_btn"]) > 0) ) {
     $hide = ($_REQUEST["hide"] > 0 ? 1 : 0);
     $alt = ($_REQUEST["alt_photo"] > 0 ? 1 : 0);
@@ -18,6 +20,18 @@ if ( (is_admin(8)) && (strlen($_REQUEST["save_btn"]) > 0) ) {
     $altfile = $_SERVER['DOCUMENT_ROOT']."\photo_alt\\".alt_photo($curr_pid);
     $hidden_people[$curr_pid]['hide'] = $hide;
     $hidden_people[$curr_pid]['use_alt'] = $alt;
+	
+	$use_alt_t = ($_REQUEST["use_alt_t"] > 0 ? 1 : 0);	
+	$dbh_my->query("EXEC AddUpdate_altinfo @id = '".$curr_pid."', @alt_type='t', @use_alt = ".$use_alt_t.", @alt_value = '".$_REQUEST["alt_t"]."'");
+	$pers["use_alt_t"] = $use_alt_t; $pers["alt_t"] = $_REQUEST["alt_t"];
+	$use_alt_c = ($_REQUEST["use_alt_c"] > 0 ? 1 : 0);
+	$dbh_my->query("EXEC AddUpdate_altinfo @id = '".$curr_pid."', @alt_type='c', @use_alt = ".$use_alt_c.", @alt_value = '".$_REQUEST["alt_c"]."'");
+	$pers["use_alt_c"] = $use_alt_c; $pers["alt_c"] = $_REQUEST["alt_c"];
+	$use_alt_e = ($_REQUEST["use_alt_e"] > 0 ? 1 : 0);
+	$dbh_my->query("EXEC AddUpdate_altinfo @id = '".$curr_pid."', @alt_type='e', @use_alt = ".$use_alt_e.", @alt_value = '".$_REQUEST["alt_e"]."'");	
+	$pers["use_alt_e"] = $use_alt_e; $pers["alt_e"] = $_REQUEST["alt_e"];
+
+	
     if ($_REQUEST['del_alt'] > 0) {
         unlink($altfile);    
     } else {
@@ -57,6 +71,9 @@ if ($s_max_alt > IMG_B_SIZE ) {
     $w_alt = round(IMG_B_SIZE * $w_alt / $s_max_alt); $h_alt = round(IMG_B_SIZE * $h_alt / $s_max_alt);
 }
 if ($w_alt <= 0) $w_alt = IMG_B_SIZE; if ($h_alt <= 0) $h_alt = IMG_B_SIZE;
+
+
+
 
 
 $smarty->assign("curr_pid", $curr_pid);

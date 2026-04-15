@@ -30,7 +30,7 @@
     <td align=center width=226><a href={$links.idx}><img src="img/Logo_Lider.png" width="209" height="69"></a><br /><br /></td>
     <td class=top_menu>
     
-        <table><tr>     
+        <table><tr>    
         {assign var=i value=0}
         {foreach from=$menu key=k item=v}
             <td class='menu'><a class='top' href='{$k}'>{$v}</a></td>

@@ -102,16 +102,6 @@ if ((isset($_SESSION["roomid"])) && (strlen($_POST['add_btn']) > 2)) {
                         (".$_SESSION["roomid"].", ".$nm_tb.", ".$int_num.", '".$_POST['person']."', '".$_POST['comment']."')"; 
                     $dbh_my->query($query);          
                     $add_text .= "Интервал ".$int_text." добавлен<br>\n"; 
-                    
-                    //  Mailer
-                    //	$to      = 'V.Poliektov@leader-invest.ru';
-                    //	$subject = 'Бронирование переговорных';
-                    //	$message = $add_text;
-                    //	$headers = 'From: portal@leader-invest.ru';
-                    //	mail($to, $subject, $message, $headers);
-                    //  Mailer end
-                    
-                    
                     foreach($dbh_my->query("select * from meetings where room_id = ".$_SESSION["roomid"]." and time_begin >= ".$w_s." and time_begin < ".$w_e) as $row) 
                         $meetings[$row["id"]] = $row;                                           
                 }             

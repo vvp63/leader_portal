@@ -11,9 +11,32 @@
     {/if}
     <br><br><table width=100%>
     <tr><td class=pc><b>Должность</b></td><td class=pc>{$pers.POSITION}</td></tr>
-    <tr><td class=pc><b>Телефон</b></td><td class=pc>{$pers.WorkPhone}</td></tr>
-    <tr><td class=pc><b>Кабинет</b></td><td class=pc>{$pers.WorkCabinet}</td></tr>
-    <tr><td class=pc><b>Email</b></td><td class=pc><a href='mailto:{$pers.WorkEmail}'>{$pers.WorkEmail}</a></td></tr>
+    <tr><td class=pc><b>Телефон</b></td><td class=pc>
+		{if $pers.use_alt_t}
+			{$pers.alt_t}
+			{if $is_adm_8} <i class=alt>&nbsp;(Из 1С - {$pers.WorkPhone})&nbsp;</i>{/if}
+		{else}
+			{$pers.WorkPhone}
+		{/if}
+	</td></tr>
+    <tr><td class=pc><b>Кабинет</b></td><td class=pc>
+		{if $pers.use_alt_c}
+			{$pers.alt_c}
+			{if $is_adm_8} <i class=alt>&nbsp;(Из 1С - {$pers.WorkCabinet})&nbsp;</i>{/if}
+		{else}
+			{$pers.WorkCabinet}
+		{/if}	
+	</td></tr>
+    <tr><td class=pc><b>Email</b></td><td class=pc>
+		{if $pers.use_alt_e}
+			<a href='mailto:{$pers.alt_e}'>{$pers.alt_e}</a>
+			{if $is_adm_8} <i class=alt>&nbsp;(Из 1С - <a href='mailto:{$pers.WorkEmail}'>{$pers.WorkEmail}</a>)&nbsp;</i>{/if}
+		{else}
+			<a href='mailto:{$pers.WorkEmail}'>{$pers.WorkEmail}</a>
+		{/if}	
+	
+
+	</td></tr>
     <tr><td class=pc><b>Дата рождения</b></td><td class=pc>{$birth}</td></tr>
     {if $vactxt != ""}
         <tr><td class=pc><b>Текущее отсутствие</b></td><td class=pc>{$vactxt}</td></tr>
@@ -21,6 +44,9 @@
     
     
     {if $is_adm_8}
+		<tr><td class=pc colspan=2>
+		<input type=button class=btn_adm value='Посмотреть отсутствия' onclick='window.open("./vac_pers.php?id={$curr_pid}", "_blank", "top=100, left=100, width=800, height=700")'>
+		</td></tr>
         <tr><td class=pc colspan=2><form method=post enctype='multipart/form-data' action={$links.pers}?id={$curr_pid}> <table><tr><td class=form>   
         <b class=err>Настройка отображения</b><br>
         <input type=checkbox class=cb name=hide value=1 {if $is_hp} checked{/if}>&nbsp;Скрывать сотрудника<br>
@@ -33,6 +59,20 @@
         {/if}
         Загрузить JPG <input name=photo_file type=file class=f2 /><br>
         <input type=checkbox class=cb name=del_alt value=1>&nbsp;Удалить альтернативное фото<br>
+		<br>
+		<table>
+		<tr>
+		<td class=alt><input type=checkbox class=cb name=use_alt_t value=1 {if $pers.use_alt_t} checked{/if}>&nbsp;Альтернативный телефон&nbsp;</td>
+		<td><input type=text name=alt_t value='{$pers.alt_t}' class=f3></td>
+		</tr><tr>
+		<td class=alt><input type=checkbox class=cb name=use_alt_c value=1 {if $pers.use_alt_c} checked{/if}>&nbsp;Альтернативный кабинет&nbsp;</td>
+		<td><input type=text name=alt_c value='{$pers.alt_c}' class=f3></td>
+		</tr><tr>
+		<td class=alt><input type=checkbox class=cb name=use_alt_e value=1 {if $pers.use_alt_e} checked{/if}>&nbsp;Альтернативный Email&nbsp;</td>
+		<td><input type=text name=alt_e value='{$pers.alt_e}' class=f3></td>
+		</tr>		
+		</table>
+		
         <input type=submit class=btn_adm name=save_btn value='Сохранить'></td></tr></table></form></td></tr>
     {/if}
     </table>

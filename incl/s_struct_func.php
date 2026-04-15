@@ -98,7 +98,7 @@ function s_PersTable($persons, $sel_person) {
             $result[$key]["hide"] = is_hp($key);
             $result[$key]["fio"] = $value["FAMILY"]." ".$value["NAME"]." ".$value["SNAME"];
             $result[$key]["position"] = $value["POSITION"];
-            $result[$key]["phone"] = $value["WorkPhone"];
+            $result[$key]["phone"] = ($value["use_alt_t"] ? $value["alt_t"] : $value["WorkPhone"]);
         }
     }       
     return $result; 

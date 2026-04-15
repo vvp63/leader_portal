@@ -2,6 +2,7 @@
 
 <h1>График отсутствий</h1><br>
 
+
 <table class=v3><tr><td class=vv width=30>&nbsp;</td><td class=vtu>&nbsp;Основной&nbsp;отпуск&nbsp;</td>
 <td class=va width=30>&nbsp;</td><td class=vtu>&nbsp;Дополнительный&nbsp;отпуск&nbsp;</td>
 <td class=vk width=30>&nbsp;</td><td class=vtu>&nbsp;Командировка&nbsp;</td>

@@ -88,29 +88,21 @@
     <table width=600> 
     {assign var=d value=$lastmonth}
     {while $d < $nextmonth}
-        
         {assign var=c_wd value=$d|date_format:"%u"}
         {assign var=c_dt value=$d|date_format:"%d.%m.%Y"}  
-        <tr><td width=100 class=pc{if $c_wd < 6} {else}_sel{/if}>{$c_dt}</td><td width=100% class=pc{if $c_wd < 6} {else}_sel{/if}> 
-        {foreach from=$meetings key=k item=v}
-            {if $v.time_begin >= $d && $v.time_begin < ($d + 86400)}
-                {assign var=pers_id value=$v.person|lower}
-                {assign var=fam value=$people.$pers_id.FAMILY}
-                {assign var=name_s value=mb_substr($people.$pers_id.NAME, 0, 1)}
-                {assign var=sname_s value=mb_substr($people.$pers_id.SNAME, 0, 1)}
-                {assign var=roomid value=$v.room_id}
-                <span class=mr{$roomid}><a href={$links.meet}?roomid={$roomid}&ts={$v.time_begin}>{$rooms.$roomid.name}</a></span>&nbsp;
-                {$v.time_begin|date_format:"%H:%M"} - {($v.time_begin + $v.intervals_num * $rooms.$roomid.time_incr)|date_format:"%H:%M"}&nbsp;
-                {$v.comment}&nbsp;
-                {if isset($people.$pers_id) && !($people.$pers_id.is_hp)} 
-                    <a href={$links.pers}?id={$pers_id}>{$fam} {$name_s}.{$sname_s}.</a>
-                {/if}
-                <br>
-            {/if}
-        {/foreach}        
-        
+        <tr><td width=100 class=pc{if $c_wd < 6}{else}_sel{/if}>{$c_dt}</td><td width=100% class=pc{if $c_wd < 6}{else}_sel{/if}> 
+        {foreach from=$meetings key=k item=v}{if $v.time_begin >= $d && $v.time_begin < ($d + 86400)}
+			{assign var=pers_id value=$v.person|lower}
+			{assign var=fam value=$people.$pers_id.FAMILY}
+			{assign var=name_s value=mb_substr($people.$pers_id.NAME, 0, 1)}
+			{assign var=sname_s value=mb_substr($people.$pers_id.SNAME, 0, 1)}
+			{assign var=roomid value=$v.room_id}
+			<span class=mr{$roomid}><a href={$links.meet}?roomid={$roomid}&ts={$v.time_begin}>{$rooms.$roomid.name}</a></span>&nbsp;
+			{$v.time_begin|date_format:"%H:%M"} - {($v.time_begin + $v.intervals_num * $rooms.$roomid.time_incr)|date_format:"%H:%M"}&nbsp; {$v.comment}&nbsp;
+			{if isset($people.$pers_id) && !($people.$pers_id.is_hp)}<a href={$links.pers}?id={$pers_id}>{$fam} {$name_s}.{$sname_s}.</a>{/if}
+			<br>
+        {/if}{/foreach}         
         </td></tr>
-
         {assign var=d value=$d + 86400}
     {/while}
     </table><br><br>  

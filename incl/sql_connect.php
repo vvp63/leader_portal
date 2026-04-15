@@ -47,8 +47,6 @@ foreach ($struct as $i=>$k) $struct[$i]["is_hs"] = is_hs($i);
 
 $people = array();
 
-
-
 					  
 $persons_query = "SELECT v1.[ФизическоеЛицоСсылка] AS [id], v1.[Фамилия] AS [FAMILY]
                   ,v1.[Отчество] AS [SNAME], v1.[Имя] AS [NAME]
@@ -78,6 +76,16 @@ foreach ($dbh->query($persons_query) as $row) {
     $people[$id]["STRUCTURE"] = $parent_str;
     $people[$id]["PHOTO"] = $id.".jpg";  
 }
+
+$persons_alt_query = "SELECT [Id], [alt_type], [use_alt], [alt_value] FROM [person_altinfo]";
+foreach ($dbh_my->query($persons_alt_query) as $row) {
+	$id = mb_strtolower($row["Id"]);
+	$people[$id]["use_alt_".$row["alt_type"]] = $row["use_alt"];
+	$people[$id]["alt_".$row["alt_type"]] = $row["alt_value"];
+}
+				  
+
+
 
 $hidden_people = array();
 foreach ($dbh_my->query("select id, hide, use_alt from hide_person") as $row) $hidden_people[mb_strtolower($row["id"])] = $row;

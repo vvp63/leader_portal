@@ -14,14 +14,16 @@
         td.main{text-align: left; vertical-align: top; font-size: 16px; background-color: #F4F9FF; padding: 30; padding-top: 15; line-height: 1.5;}
         td.main_idx{text-align: left; vertical-align: top; font-size: 16px; padding: 90 60; border: 1px solid #82A8D0; border-top: 0;
                     background-color: #0550A0; background-image: url(/img/ship.jpg); background-position: center; background-repeat: no-repeat;}
+		td.alt{text-align: left;}
         b.idx {color: #FFFFFF; font-family: Gadugi, Calibri; font-size: 96;}
         h1 {font-size: 20px; font-weight: bold; color:#0550A0; font-family: Arial ,Helvetica, Geneva, sans-serif;}
         h2 {font-size: 18px; font-weight: bold; color:#0550A0; font-family: Arial ,Helvetica, Geneva, sans-serif;}
         b {font-size: 18px; font-weight: bold; color:#0F140E; font-family: Arial ,Helvetica, Geneva, sans-serif;}
         td.person {padding: 10; background-color: #FFFFFF; text-align: center; vertical-align: top; border: 1px solid #82A8D0; border-bottom: 0; border-right: 0;}
         img.photo{padding: 10px; background: #F4F9FF; border: 1px solid #82A8D0;}
-        td.pc {padding: 5; text-align: left; vertical-align: top; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
-        td.pc_sel {padding: 5; text-align: left; vertical-align: top; border: 1px solid #82A8D0;; background-color: #E6F0FE; border-top: 0; border-left: 0;}
+        td.pc {padding: 5px; margin: 3px; text-align: left; vertical-align: top; border: 1px solid #82A8D0; line-height: 22px; }
+        td.pc_sel {padding: 5px; margin: 3px; text-align: left; vertical-align: top; border: 1px solid #82A8D0;; background-color: #E6F0FE;; line-height: 22px;}
+		td.pc_gid {padding: 5px; margin: 3px; text-align: left; vertical-align: top; border: 2px solid #82A8D0; font-size:18px; font-variant: bold; background-color: #E9F0FC;}
         input, select { height: 28px; background: #FFFFFF; padding-left: 10px; padding-right: 10px;
                 border: 2px solid #82A8D0; border-top: 1; border-right: 1;
                 font-family: Helvetica, Geneva, Arial, sans-serif; font-size: 18px; color:#0F140E; }
@@ -29,18 +31,21 @@
         input.btn {color:#F4F9FF; background-color: #0550A0;}
         input.fl {padding: 0; width: 500px;}
         input.f2 {padding: 0; width: 300px;}
-        td.calend {padding: 3; color:#0F148E; font-size: 15; background-color: #E6F0FE; text-align: center; border: 1px solid #82A8D0; border-top: 0; border-left: 0;}
+		input.f3 {font-size: 12px; width: 200px;}
+        td.calend {padding: 3; color:#0F148E; font-size: 15; background-color: #E6F0FE; text-align: center; border: 1px solid #82A8D0;}
+		td.calend_gid {padding: 3; color:#0F148E; font-size: 15; background-color: #D0E0F6; text-align: center; border: 2px solid #82A8D0;}
         td.ce {padding: 3; background-color: #FFFFFF; border: 1px solid #82A8D0; border-top: 0; border-left: 0; font-size: 14;}
         td.meet{padding: 3; text-align: center; font-size: 13px; color:#0F140E; background-color: #96B8D9; line-height: 1; border: 1px solid #5A98B7;}
         a.meet{font-size: 13px; color:#0F148E;}
         b.err{font-size: 16px; color: #F05079;}
         a.mr {font-size: 17px; font-weight: bold;}
-		
-	span.mr100 {background-color: #F0CE88; padding: 4; margin: 2;}
-	span.mr101 {background-color: #88CEF0; padding: 4; margin: 2;}
-	span.mr102 {background-color: #B3F688; padding: 4; margin: 2;}
-	span.mr103 {background-color: #F0B3C8; padding: 4; margin: 2;}
-	span.mr105 {background-color: #B3F688; padding: 4; margin: 2;}
+		i.alt {font-size: 13px; color:#0F8E14; background-color: #F0CE88;}
+				
+		span.mr100 {background-color: #F0CE88; padding: 4px; margin: 2px;}
+		span.mr101 {background-color: #88CEF0; padding: 4px; margin: 2px;}
+		span.mr107 {background-color: #B3F688; padding: 4px; margin: 2px;}
+		span.mr108 {background-color: #F0B3C8; padding: 4px; margin: 2px;}
+		span.mr106 {background-color: #B3F688; padding: 4px; margin: 2px;}
 		
         td.form {padding: 15; background-color: #E6F0FE; text-align: left; border: 2px solid #82A8D0; border-top: 1; border-left: 1;}
         
