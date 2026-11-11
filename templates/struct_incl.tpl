@@ -16,6 +16,6 @@
 
 {assign var=perstable value=$currdep.persons}
 
-<br><h2>Сотрудники</h2>
+<br>
 
 {include file="pers_table.tpl"}
